@@ -29,4 +29,35 @@ Exemple.create({
     price: 1000
 })
 
+const findAll = async () => {
+    const exemples = await Exemple.find({names: ""})
+    console.log('FIND ALL =========', exemples)
+}
+
+const findById = async () => {
+    const exemple= await Exemple.findById('637219adbc4a961c5d61bfbc')
+    console.log(exemple);
+}
+const updateById = async() => {
+    ///méthode 1
+    const exemple = await Exemple.findByIdAndUpdate('637219adbc4a961c5d61bfbc', {name: "Premier element"})
+
+    /*///méthode 2
+    const exemple = await Exemple.findById('637219adbc4a961c5d61bfbc')
+    exemple.name = "Modification"
+    exemple.save()
+
+    ///méthode 3
+    const exemple = await Exemple.findById('637219adbc4a961c5d61bfbc')
+    exemple.set({
+        name: "Modifié avec Set"
+    })
+    exemple.save*/
+}
+
+
+/*findAll()
+findById()
+updateById()*/
+
 export default Exemple

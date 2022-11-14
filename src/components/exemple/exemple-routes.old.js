@@ -2,15 +2,27 @@ import Router from '@koa/router'
 
 const exemples = new Router()
 
-exemples.get('/', ExempleControllers.index)
-    
+    const todos = [
+        {id: 1,
+            title: 'acheter des patates'
+        },
+        {
+            id: 2,
+            title: 'acheter des pommes'
+        
+        }
+    ]
+     
+router.get('/', (ctx, next)=>{
+    ctx.body = todos
+})
 
-exemples.get('/:id', (ctx) =>{
+router.get('/:id', (ctx) =>{
     const task = todos.find(t => parseInt(ctx.params.id)=== t.id)
     ctx.body = task
 })
 
-exemples.post('/', ctx => {
+router.post('/', ctx => {
     const newTask = {
         id: todos.length+1,
         title: ctx.request.body.title
@@ -19,15 +31,10 @@ exemples.post('/', ctx => {
     ctx.status = 204
 })
 
-exemples.put('/id', (ctx)=> {
+router.put('/id', (ctx)=> {
     const task = todos.find(t => parseInt(ctx.params.id )=== t.id)
     task.title = ctx.request.body.title
     ctx.body=todos
 })
 
-exemples.delete('/:id', (ctx) => {
-    const updatedTodos = todos.filter(t => parseInt(ctx.params.id) !== t.id)
-    ctx.body = updatedTodos
-})
-
-export default exemples
+router.delete
