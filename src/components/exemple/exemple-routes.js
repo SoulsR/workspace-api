@@ -1,33 +1,16 @@
-import Router from '@koa/router'
+import Router from "@koa/router";
+import * as exemplesCtrl from "#components/exemples/exemples-controller.js"
 
-const exemples = new Router()
+const exempleRouter = new Router();
 
-exemples.get('/', ExempleControllers.index)
-    
+exempleRouter.get("/", exemplesCtrl.getAll);
 
-exemples.get('/:id', (ctx) =>{
-    const task = todos.find(t => parseInt(ctx.params.id)=== t.id)
-    ctx.body = task
-})
+exempleRouter.get("/:id", exemplesCtrl.getOne);
 
-exemples.post('/', ctx => {
-    const newTask = {
-        id: todos.length+1,
-        title: ctx.request.body.title
-    }
-    todos.push(newTask)
-    ctx.status = 204
-})
+exempleRouter.post("/", exemplesCtrl.create);
 
-exemples.put('/id', (ctx)=> {
-    const task = todos.find(t => parseInt(ctx.params.id )=== t.id)
-    task.title = ctx.request.body.title
-    ctx.body=todos
-})
+exempleRouter.put("/:id", exemplesCtrl.edit);
 
-exemples.delete('/:id', (ctx) => {
-    const updatedTodos = todos.filter(t => parseInt(ctx.params.id) !== t.id)
-    ctx.body = updatedTodos
-})
+exempleRouter.delete("/:id", exemplesCtrl.remove);
 
-export default exemples
+export default exempleRouter;

@@ -1,13 +1,13 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const {Schema} = mongoose
+const { Schema } = mongoose;
 
-const exempleSchema = new Schema({
+const exemplesSchema = new Schema({
     name: {
         type: String,
         required: true
     },
-    description:{
+    description: {
         type: String
     },
     colors: {
@@ -17,47 +17,53 @@ const exempleSchema = new Schema({
     price: {
         type: Number,
         required: true
+    },
+    createAt: {
+        type: Date,
+        required: true
+    },
+    updateAt: {
+        type: Date,
+        required: true
+    }
+});
+
+const exemplesModel = mongoose.model('Exemples', exemplesSchema);
+
+exemplesSchema.static({
+    async createOne(object) {
+        await exemplesModel.insertOne(object);
+    },
+    async updateById (object) {
+        await exemplesModel.updateOne({_id: object.id}, {$set: object});
     }
 })
 
-const Exemple = mongoose.model('Exemple', exempleSchema)
+// exemplesModel.create({
+//     name: "TOTO",
+//     description: "LOREM IPSUM",
+//     color: ["red", "blue"],
+//    price: 12
+// });
+//
+// const findALl = async () => {
+//     const exemples = await exemplesModel.find();
+// }
+//
+// const findByName = async (name) => {
+//     const exemple = await exemplesModel.find({name: name});
+// }
+//
+// const findById = async (id) => {
+//     const exemple = await exemplesModel.findById(id);
+// }
+//
+// const updateById = async (id, object) => {
+//     await exemplesModel.updateOne({_id: id}, {$set: object});
+// }
+//
+// const deleteById = async (id) => {
+//     await exemplesModel.deleteOne({_id: id});
+// }
 
-Exemple.create({
-    name: 'test Product',
-    description: 'Lorem ipsum',
-    colors: ['black', 'blue', 'red'],
-    price: 1000
-})
-
-const findAll = async () => {
-    const exemples = await Exemple.find({names: ""})
-    console.log('FIND ALL =========', exemples)
-}
-
-const findById = async () => {
-    const exemple= await Exemple.findById('637219adbc4a961c5d61bfbc')
-    console.log(exemple);
-}
-const updateById = async() => {
-    ///méthode 1
-    const exemple = await Exemple.findByIdAndUpdate('637219adbc4a961c5d61bfbc', {name: "Premier element"})
-
-    /*///méthode 2
-    const exemple = await Exemple.findById('637219adbc4a961c5d61bfbc')
-    exemple.name = "Modification"
-    exemple.save()
-
-    ///méthode 3
-    const exemple = await Exemple.findById('637219adbc4a961c5d61bfbc')
-    exemple.set({
-        name: "Modifié avec Set"
-    })
-    exemple.save*/
-}
-
-
-/*findAll()
-findById()
-updateById()*/
-
-export default Exemple
+export default exemplesModel;
