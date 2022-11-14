@@ -1,18 +1,31 @@
 {
-    "name": "ynov-api",
-    "version": "1.0.0",
-    "description": "to do liste basique",
-    "main": "app.js",
-    "author": "ArthurM",     
-    "type": "module",
-        "dependencies": {
-            "nodemon": "^2.0.20"
-        },
-        "scripts": {
-    "dev": "node server-raw.js",
-    "nodemon" : "nodemon server-raw.js"
+  "name": "ynov-api",
+  "version": "1.0.0",
+  "description": "to do liste basique",
+  "main": "app.js",
+  "author": "ArthurM",     
+  "type": "module",
+      "dependencies": {
+          "nodemon": "^2.0.20",
+          "@koa/router": "^12.0.0",
+          "dotenv": "^16.0.3",
+          "koa": "^2.13.4",
+          "koa-bodyparser": "^4.3.0",
+          "koa-morgan": "^1.0.1",
+          "mongoose": "^6.7.2"
+      },
+      "scripts": {
+  "dev": "node server-raw.js",
+  "nodemon" : "nodemon server-raw.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "imports": {
+    "#components/*.js": "./src/components/*.js",
+    "#routes/*.js": "./src/routes/*.js",
+    "#config/*.js": "./src/config/*.js",
+    "#middlewares/*.js": "./src/middlewares/*.js",
+    "#services/*.js": "./src/services/*.js"
   }
 }
