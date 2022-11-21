@@ -14,11 +14,10 @@ const taskSchema = new Schema({
         type: Number,
         required: true
     },
-    nomUtilisateur: {
-        type: String,
-        required: true
-    },
-    
+    Valide : {
+        type: Boolean,
+        default: false
+    }
 })
 
 const Task = mongoose.model('Task', taskSchema)
