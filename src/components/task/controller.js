@@ -27,7 +27,7 @@ export async function creerTache(ctx) {
             nomTache: Joi.string().required(),
             description: Joi.string(),
             importance: Joi.number().required(),
-            nomUtilisateur: Joi.string().required()
+            Valide: Joi.boolean()
         });
 
         const { erreur } = taskValidationSchema.validate(ctx.request.body);
