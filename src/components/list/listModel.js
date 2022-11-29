@@ -1,12 +1,16 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose'
 
-const {Schema} = mongoose
+const { Schema } = mongoose
 
-const taskSchema = new Schema({
-    nomListe: {
-        type: String,
-        required: true
-    }
+const listSchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  }
+}, {
+  timestamps: true
 })
 
-const Task = mongoose.model('Task', taskSchema)
+const List = mongoose.model('List', listSchema)
+
+export default List

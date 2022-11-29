@@ -1,11 +1,12 @@
 import Router from '@koa/router'
+import * as listControllers from '#components/list/list-controllers.js'
 
-const tasks = new Router()
+const lists = new Router()
 
-tasks.get('/', TaskControllers.index)
+lists.get('/', listControllers.index)
+lists.get('/:id', listControllers.id)
+lists.post('/', listControllers.create)
+lists.put('/:id', listControllers.update)
+lists.del('/:id', listControllers.destroy)
 
-tasks.get('/:id', (ctx) =>{
-    const task = todos.find(t => parseInt(ctx.params.id)=== t.id)
-    ctx.body = task
-})
-
+export default lists

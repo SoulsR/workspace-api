@@ -1,11 +1,14 @@
 import Router from '@koa/router'
+import * as TaskControllers from '#components/task/task-controllers.js'
+import { isAuthenticated, isAuthenticatedWithUser } from '#middlewares/jwt-handler.js'
 
 const tasks = new Router()
 
 tasks.get('/', TaskControllers.index)
+tasks.get('/:id', TaskControllers.id)
+tasks.get('/lists/:listId', TaskControllers.getAllByList)
+tasks.post('/', TaskControllers.create)
+tasks.put('/:id', TaskControllers.update)
+tasks.del('/:id', TaskControllers.destroy)
 
-tasks.get('/:id', (ctx) =>{
-    const task = todos.find(t => parseInt(ctx.params.id)=== t.id)
-    ctx.body = task
-})
-
+export default tasks
